@@ -60,6 +60,7 @@
 }
 
 * body main .board {
+  background-color: #fff;
   width: 100%;
   height: 100%;
   display: -ms-grid;
@@ -83,6 +84,10 @@
           align-items: center;
   border: 1px solid black;
   cursor: pointer;
+}
+
+* body main .board .spot :hover {
+  background-color: coral;
 }
 
 * body main .board .spot .cross {
@@ -142,7 +147,7 @@
 }
 
 * body main .board .spot .circle #cover {
-  background-color: white;
+  background-color: #fff;
   width: calc(MIN(65vw, 65vh) / 3 * 0.5);
   height: calc(MIN(65vw, 65vh) / 3 * 0.5);
 }
