@@ -102,8 +102,8 @@
 * body main .board .spot .xShape .diagonal {
   position: absolute;
   background-color: blue;
-  width: calc(MIN(65vw, 65vh) / 3);
-  height: 6px;
+  width: calc(MIN(65vw, 65vh) / 3 * 0.8);
+  height: 10px;
 }
 
 * body main .board .spot .xShape #line1 {
@@ -114,5 +114,36 @@
 * body main .board .spot .xShape #line2 {
   -webkit-transform: rotate(-0.125turn);
           transform: rotate(-0.125turn);
+}
+
+* body main .board .spot .oShape {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+* body main .board .spot .oShape .circle {
+  position: absolute;
+  width: calc(MIN(65vw, 65vh) / 3 * 0.7);
+  height: calc(MIN(65vw, 65vh) / 3 * 0.7);
+  border-radius: 50%;
+}
+
+* body main .board .spot .oShape #ring {
+  background-color: red;
+}
+
+* body main .board .spot .oShape #cover {
+  background-color: white;
+  width: calc(MIN(65vw, 65vh) / 3 * 0.5);
+  height: calc(MIN(65vw, 65vh) / 3 * 0.5);
 }
 /*# sourceMappingURL=style.css.map */

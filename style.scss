@@ -56,14 +56,35 @@ $box-width: MIN(65vw, 65vh);
                         .diagonal {
                             position: absolute;
                             background-color: blue;
-                            width: calc(#{$box-width} / 3);
-                            height: 6px;
+                            width: calc(#{$box-width} / 3 * 0.8);
+                            height: 10px;
                         }
                         #line1 {
                             transform: rotate(0.125turn);
                         }
                         #line2 {
                             transform: rotate(-0.125turn);
+                        }
+                    }
+                    .oShape {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .circle {
+                            position: absolute;
+                            width: calc(#{$box-width} / 3 * 0.7);
+                            height: calc(#{$box-width} / 3 * 0.7);
+                            border-radius: 50%;
+                        }
+                        #ring {
+                            background-color: red;
+                        }
+                        #cover {
+                            background-color: white;
+                            width: calc(#{$box-width} / 3 * 0.5);
+                            height: calc(#{$box-width} / 3 * 0.5);
                         }
                     }
                 }
