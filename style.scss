@@ -28,6 +28,7 @@ $box-width: MIN(65vw, 65vh);
         width: 100vw;
         overflow: hidden;
         h1 {
+            font-size: 3em;
             color: $cross-color;
             text-decoration: underline 5px dotted $cross-color;
             margin-bottom: 5vh;
