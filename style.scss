@@ -92,6 +92,13 @@ $box-width: MIN(65vw, 65vh);
                             height: calc(#{$box-width} / 3 * 0.5);
                         }
                     }
+                    .empty {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
                 }
             }
         }
