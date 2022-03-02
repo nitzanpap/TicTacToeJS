@@ -21,17 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
     console.log(spots[0].children[0].className)
 
-    function addCrossAtSpot() {}
-
     // Create yout board
     function createBoard() {
-        for (let i = 0; i < cardArray.length; i++) {
-            const card = document.createElement("img")
-            card.setAttribute("src", "images/blank.png")
-            card.setAttribute("data-id", i)
+        for (let i = 0; i < spots.length; i++) {
+            let spot = spots[i].children[0]
+
             card.addEventListener("click", flipCard)
             grid.appendChild(card)
         }
+    }
+
+    function addCrossAtSpot(spot) {
+        let cross = document.createElement("div")
     }
 
     // Check for a match
