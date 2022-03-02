@@ -28,7 +28,13 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  margin: 0;
+}
+
+* body h1 {
+  color: blue;
+  -webkit-text-decoration: underline 5px dotted blue;
+          text-decoration: underline 5px dotted blue;
+  margin-bottom: 5vh;
 }
 
 * body main {
@@ -45,9 +51,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: MIN(50vw, 50vh);
-  width: MIN(50vw, 50vh);
-  margin: 0;
+  height: MIN(65vw, 65vh);
+  width: MIN(65vw, 65vh);
   border: 10px solid crimson;
 }
 

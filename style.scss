@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-$box-width: MIN(50vw, 50vh);
+$box-width: MIN(65vw, 65vh);
 
 * {
     box-sizing: border-box;
@@ -18,7 +18,11 @@ $box-width: MIN(50vw, 50vh);
         height: 100vh;
         width: 100vw;
         overflow: hidden;
-        margin: 0;
+        h1 {
+            color: blue;
+            text-decoration: underline 5px dotted blue;
+            margin-bottom: 5vh;
+        }
         main {
             display: flex;
             flex-direction: column;
@@ -26,7 +30,6 @@ $box-width: MIN(50vw, 50vh);
             justify-content: center;
             height: $box-width;
             width: $box-width;
-            margin: 0;
             border: 10px solid crimson;
             .board {
                 display: grid;
