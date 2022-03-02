@@ -85,7 +85,7 @@
   cursor: pointer;
 }
 
-* body main .board .spot .xShape {
+* body main .board .spot .cross {
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -99,24 +99,24 @@
           align-items: center;
 }
 
-* body main .board .spot .xShape .diagonal {
+* body main .board .spot .cross .diagonal {
   position: absolute;
   background-color: blue;
   width: calc(MIN(65vw, 65vh) / 3 * 0.8);
   height: 10px;
 }
 
-* body main .board .spot .xShape #line1 {
+* body main .board .spot .cross #line1 {
   -webkit-transform: rotate(0.125turn);
           transform: rotate(0.125turn);
 }
 
-* body main .board .spot .xShape #line2 {
+* body main .board .spot .cross #line2 {
   -webkit-transform: rotate(-0.125turn);
           transform: rotate(-0.125turn);
 }
 
-* body main .board .spot .oShape {
+* body main .board .spot .circle {
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -130,18 +130,18 @@
           align-items: center;
 }
 
-* body main .board .spot .oShape .circle {
+* body main .board .spot .circle .circle-component {
   position: absolute;
   width: calc(MIN(65vw, 65vh) / 3 * 0.7);
   height: calc(MIN(65vw, 65vh) / 3 * 0.7);
   border-radius: 50%;
 }
 
-* body main .board .spot .oShape #ring {
+* body main .board .spot .circle #ring {
   background-color: red;
 }
 
-* body main .board .spot .oShape #cover {
+* body main .board .spot .circle #cover {
   background-color: white;
   width: calc(MIN(65vw, 65vh) / 3 * 0.5);
   height: calc(MIN(65vw, 65vh) / 3 * 0.5);
