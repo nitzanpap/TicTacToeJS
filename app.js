@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     const spots = Array.from(document.querySelectorAll(".spot"))
+    const msg = document.querySelector(".message-box")
     console.log(spots)
 
     let board = ["", "", "", "", "", "", "", "", ""]
     let playerTurn = "X"
     let isGameOver = false
+    let numOfOverallTurns = 0
 
     /*
      [0] [1] [2]
@@ -23,18 +25,27 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
 
     spots.forEach((spot, index) => {
-        let sign = spot.children[0]
-        sign.addEventListener("click", () => handleUserClick(spot))
+        spot.addEventListener("click", () => handleUserClick(spot))
     })
 
     function handleUserClick(spot) {
+        let spotIndex = spot.id.slice(-1)
+        board[spotIndex] = playerTurn
+        console.log(board)
+        // Reset message box
+        msg.innerHTML = ""
         let div = spot.children[0]
+        // Handle the case in which the spot is empty
         if (div.className == "empty") {
+            // Add a cross if it's X's turn
             if (playerTurn == "X") addCrossAtSpot(spot)
+            // Add a circle if it's O's turn
             else addCircleAtSpot(spot)
             switchTurn()
         } else {
-            alert("This spot has already been marked.")
+            // Handle the case in which the spot is not empty
+            msg.innerHTML = "This spot has already been marked."
+            msg.style.color = "crimson"
         }
     }
 
@@ -45,12 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function addCrossAtSpot(spot, index) {
         let div = spot.children[0]
-        console.log(div.className)
         if (div.className == "empty") {
             const cross = document.createElement("div")
             cross.classList.add("cross")
-
-            console.log(cross)
 
             const diagonal1 = document.createElement("div")
             diagonal1.classList.add("diagonal")
@@ -69,12 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     function addCircleAtSpot(spot, index) {
         let div = spot.children[0]
-        console.log(div.className)
         if (div.className == "empty") {
             const circle = document.createElement("div")
             circle.classList.add("circle")
-
-            console.log(circle)
 
             const ring = document.createElement("div")
             ring.classList.add("circle-component")
