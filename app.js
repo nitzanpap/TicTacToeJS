@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const spots = Array.from(document.querySelectorAll(".spot"))
     const msg = document.querySelector(".message-box")
-    console.log(spots)
 
     let board = ["", "", "", "", "", "", "", "", ""]
     let playerTurnSign = "X"
@@ -25,48 +24,74 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
 
     function handleUserClick(spot) {
-        // Reset message box
-        msg.innerHTML = ""
-        // Handle the case in which the spot is empty
-        let div = spot.children[0]
-        if (div.className != "empty") {
-            // Handle the case in which the spot is not empty
-            msg.innerHTML = "This spot has already been marked."
-            msg.style.color = "crimson"
-        } else {
-            // Insert player's sign into the board array.
-            let spotIndex = spot.id.slice(-1)
-            board[spotIndex] = playerTurnSign
-            console.log(board)
-            // Add a cross if it's X's turn
-            if (playerTurnSign == "X") addCrossAtSpot(spot)
-            // Add a circle if it's O's turn
-            else addCircleAtSpot(spot)
-            if (checkWin()) {
-                updateMsgBox("GameWon")
-                isGameOver = true
+        if (!isGameOver) {
+            // Reset message box
+            updateMsgBox("No Message")
+
+            // Check the sign in th spot
+            let div = spot.children[0]
+
+            // Handle spot is not empty
+            if (div.className != "empty") {
+                updateMsgBox("Marked Spot")
             }
-            switchTurn()
+            // Handle spot is empty
+            else {
+                // Insert player's sign into the board array.
+                let spotIndex = spot.id.slice(-1)
+                board[spotIndex] = playerTurnSign
+                console.log(board)
+                // Add a cross if it's X's turn
+                if (playerTurnSign == "X") addCrossAtSpot(spot)
+                // Add a circle if it's O's turn
+                else addCircleAtSpot(spot)
+                turnsCounter++
+                if (checkWin()) {
+                    updateMsgBox("Game Won")
+                    isGameOver = true
+                } else if (turnsCounter == 9) {
+                    updateMsgBox("Tie")
+                    isGameOver = true
+                }
+                switchTurn()
+            }
         }
     }
 
     function checkWin() {
         let numOfConsecutiveSigns = 0
+        let gameWon = false
         winningCombinations.forEach((combination) => {
             numOfConsecutiveSigns = 0
             combination.forEach((index) => {
-                if (board[index] === playerTurnSign) numOfConsecutiveSigns++
-                console.log(numOfConsecutiveSigns)
-                if (numOfConsecutiveSigns == 3) return true
+                if (board[index] == playerTurnSign) numOfConsecutiveSigns++
             })
+            if (numOfConsecutiveSigns == 3) gameWon = true
         })
+        if (gameWon) return true
         return false
     }
 
     function updateMsgBox(message) {
-        if (message == "GameWon") {
-            msg.innerHTML = "Player " + playerTurnSign + " Won the game!"
-            msg.style.color = "springgreen"
+        switch (message) {
+            case "No Message":
+                msg.innerHTML = ""
+                break
+            case "Marked Spot":
+                msg.innerHTML = "This spot has already been marked."
+                msg.style.color = "crimson"
+                break
+            case "Game Won":
+                msg.innerHTML = "Player " + playerTurnSign + " Won the game!"
+                msg.style.color = "springgreen"
+                break
+            case "Tie":
+                msg.innerHTML = "It's a TIE!"
+                msg.style.color = "gold"
+                break
+            default:
+                alert("Invalid message.")
+                break
         }
     }
 
