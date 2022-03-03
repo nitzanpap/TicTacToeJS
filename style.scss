@@ -47,6 +47,7 @@ $box-width: MIN(65vw, 65vh);
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-template-rows: 1fr 1fr 1fr;
                 border: 10px solid $board-border-color;
+                border-radius: 10px;
                 .spot {
                     display: flex;
                     justify-content: center;
