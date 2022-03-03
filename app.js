@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(spots)
 
     let board = ["", "", "", "", "", "", "", "", ""]
-    let currentPlayer = X
+    let currentPlayer = "X"
     let isGameOver = false
 
     /*
