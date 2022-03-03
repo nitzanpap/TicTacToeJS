@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(spots)
 
     let board = ["", "", "", "", "", "", "", "", ""]
-    let currentPlayer = "X"
+    let playerTurn = "X"
     let isGameOver = false
 
     /*
@@ -24,8 +24,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     spots.forEach((spot, index) => {
         let sign = spot.children[0]
-        sign.addEventListener("click", () => addCrossAtSpot(spot))
+        sign.addEventListener("click", () => handleUserClick(spot))
     })
+
+    function handleUserClick(spot) {
+        let div = spot.children[0]
+        console.log(div.className)
+        if (div.className == "empty") {
+            if (playerTurn == "X") addCrossAtSpot(spot)
+            else addCircleAtSpot(spot)
+            switchTurn()
+        } else {
+            alert("The spot has already been marked.")
+        }
+    }
+
+    function switchTurn() {
+        if (playerTurn == "X") playerTurn = "O"
+        else playerTurn = "X"
+    }
 
     function addCrossAtSpot(spot, index) {
         let div = spot.children[0]
@@ -49,6 +66,30 @@ document.addEventListener("DOMContentLoaded", () => {
             spot.children[0].appendChild(cross)
             spot.children[0].remove()
             spot.appendChild(cross)
+        }
+    }
+    function addCircleAtSpot(spot, index) {
+        let div = spot.children[0]
+        console.log(div.className)
+        if (div.className == "empty") {
+            const circle = document.createElement("div")
+            circle.classList.add("circle")
+
+            console.log(circle)
+
+            const ring = document.createElement("div")
+            ring.classList.add("circle-component")
+            ring.setAttribute("id", "ring")
+
+            const cover = document.createElement("div")
+            cover.classList.add("circle-component")
+            cover.setAttribute("id", "cover")
+
+            circle.appendChild(ring)
+            circle.appendChild(cover)
+            spot.children[0].appendChild(circle)
+            spot.children[0].remove()
+            spot.appendChild(circle)
         }
     }
 })
