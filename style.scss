@@ -27,9 +27,9 @@ $box-width: MIN(65vw, 65vh);
         height: 100vh;
         width: 100vw;
         overflow: hidden;
+        font-size: 2em;
+        color: $cross-color;
         h1 {
-            font-size: 3em;
-            color: $cross-color;
             text-decoration: underline 5px dotted $cross-color;
             margin-bottom: 5vh;
         }
@@ -105,6 +105,13 @@ $box-width: MIN(65vw, 65vh);
                         align-items: center;
                     }
                 }
+            }
+            .message-box {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 2em;
             }
         }
     }

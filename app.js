@@ -29,13 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function handleUserClick(spot) {
         let div = spot.children[0]
-        console.log(div.className)
         if (div.className == "empty") {
             if (playerTurn == "X") addCrossAtSpot(spot)
             else addCircleAtSpot(spot)
             switchTurn()
         } else {
-            alert("The spot has already been marked.")
+            alert("This spot has already been marked.")
         }
     }
 
