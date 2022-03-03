@@ -24,30 +24,34 @@ document.addEventListener("DOMContentLoaded", () => {
         [2, 4, 6],
     ]
 
-    spots.forEach((spot, index) => {
+    spots.forEach((spot) => {
         spot.addEventListener("click", () => handleUserClick(spot))
     })
 
     function handleUserClick(spot) {
-        let spotIndex = spot.id.slice(-1)
-        board[spotIndex] = playerTurn
-        console.log(board)
         // Reset message box
         msg.innerHTML = ""
         let div = spot.children[0]
         // Handle the case in which the spot is empty
-        if (div.className == "empty") {
+        if (div.className != "empty") {
+            // Handle the case in which the spot is not empty
+            msg.innerHTML = "This spot has already been marked."
+            msg.style.color = "crimson"
+        } else {
+            // Insert player's sign into the board array.
+            let spotIndex = spot.id.slice(-1)
+            board[spotIndex] = playerTurn
+            console.log(board)
             // Add a cross if it's X's turn
             if (playerTurn == "X") addCrossAtSpot(spot)
             // Add a circle if it's O's turn
             else addCircleAtSpot(spot)
+            checkWin()
             switchTurn()
-        } else {
-            // Handle the case in which the spot is not empty
-            msg.innerHTML = "This spot has already been marked."
-            msg.style.color = "crimson"
         }
     }
+
+    function checkWin() {}
 
     function switchTurn() {
         if (playerTurn == "X") playerTurn = "O"
