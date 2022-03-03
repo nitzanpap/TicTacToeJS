@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let board = ["", "", "", "", "", "", "", "", ""]
     let playerTurnSign = "X"
     let isGameOver = false
-    let numOfOverallTurns = 0
+    let turnsCounter = 0
 
     /*
      [0] [1] [2]
@@ -23,10 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
         [0, 4, 8],
         [2, 4, 6],
     ]
-
-    spots.forEach((spot) => {
-        spot.addEventListener("click", () => handleUserClick(spot))
-    })
 
     function handleUserClick(spot) {
         // Reset message box
@@ -59,7 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
         winningCombinations.forEach((combination) => {
             numOfConsecutiveSigns = 0
             combination.forEach((index) => {
-                if (board[index] == playerTurnSign) numOfConsecutiveSigns++
+                if (board[index] === playerTurnSign) numOfConsecutiveSigns++
+                console.log(numOfConsecutiveSigns)
                 if (numOfConsecutiveSigns == 3) return true
             })
         })
@@ -120,4 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
             spot.appendChild(circle)
         }
     }
+
+    spots.forEach((spot) => {
+        spot.addEventListener("click", () => handleUserClick(spot))
+    })
 })
