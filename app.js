@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(spots)
 
     let board = ["", "", "", "", "", "", "", "", ""]
-    let playerTurn = "X"
+    let playerTurnSign = "X"
     let isGameOver = false
     let numOfOverallTurns = 0
 
@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function handleUserClick(spot) {
         // Reset message box
         msg.innerHTML = ""
-        let div = spot.children[0]
         // Handle the case in which the spot is empty
+        let div = spot.children[0]
         if (div.className != "empty") {
             // Handle the case in which the spot is not empty
             msg.innerHTML = "This spot has already been marked."
@@ -40,22 +40,42 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             // Insert player's sign into the board array.
             let spotIndex = spot.id.slice(-1)
-            board[spotIndex] = playerTurn
+            board[spotIndex] = playerTurnSign
             console.log(board)
             // Add a cross if it's X's turn
-            if (playerTurn == "X") addCrossAtSpot(spot)
+            if (playerTurnSign == "X") addCrossAtSpot(spot)
             // Add a circle if it's O's turn
             else addCircleAtSpot(spot)
-            checkWin()
+            if (checkWin()) {
+                updateMsgBox("GameWon")
+                isGameOver = true
+            }
             switchTurn()
         }
     }
 
-    function checkWin() {}
+    function checkWin() {
+        let numOfConsecutiveSigns = 0
+        winningCombinations.forEach((combination) => {
+            numOfConsecutiveSigns = 0
+            combination.forEach((index) => {
+                if (board[index] == playerTurnSign) numOfConsecutiveSigns++
+                if (numOfConsecutiveSigns == 3) return true
+            })
+        })
+        return false
+    }
+
+    function updateMsgBox(message) {
+        if (message == "GameWon") {
+            msg.innerHTML = "Player " + playerTurnSign + " Won the game!"
+            msg.style.color = "springgreen"
+        }
+    }
 
     function switchTurn() {
-        if (playerTurn == "X") playerTurn = "O"
-        else playerTurn = "X"
+        if (playerTurnSign == "X") playerTurnSign = "O"
+        else playerTurnSign = "X"
     }
 
     function addCrossAtSpot(spot, index) {
