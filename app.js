@@ -105,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function addCrossAtSpot(spot) {
-        let div = spot.children[0]
         const cross = document.createElement("div")
         cross.classList.add("cross")
 
@@ -124,7 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
         spot.appendChild(cross)
     }
     function addCircleAtSpot(spot) {
-        let div = spot.children[0]
         const circle = document.createElement("div")
         circle.classList.add("circle")
 
