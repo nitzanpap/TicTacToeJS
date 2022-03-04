@@ -86,10 +86,14 @@
           align-items: center;
   border: 1px solid #d8d8d8;
   cursor: pointer;
+  -webkit-transition: width height 2s;
+  transition: width height 2s;
 }
 
 * body main .board .spot :hover {
   background-color: #3b4450;
+  width: 1%;
+  height: 1%;
 }
 
 * body main .board .spot .cross {

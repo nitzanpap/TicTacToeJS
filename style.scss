@@ -57,9 +57,14 @@ $signature-color: #ffa786;
                     align-items: center;
                     border: 1px solid $board-border-color;
                     cursor: pointer;
+                    // Next section currently not working
+                    transition: width height 2s;
                     :hover {
                         background-color: $hover-color;
+                        width: 1%;
+                        height: 1%;
                     }
+                    // End of section
                     .cross {
                         width: 100%;
                         height: 100%;

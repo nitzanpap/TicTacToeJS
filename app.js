@@ -28,12 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
             // Reset message box
             updateMsgBox("No Message")
 
-            // Check the sign in th spot
+            // Check the sign in the spot
             let div = spot.children[0]
 
             // Handle spot is not empty
             if (div.className != "empty") {
                 updateMsgBox("Marked Spot")
+                createMarkedSpotAnimation(spot)
             }
             // Handle spot is empty
             else {
@@ -99,47 +100,47 @@ document.addEventListener("DOMContentLoaded", () => {
         else playerTurnSign = "X"
     }
 
-    function addCrossAtSpot(spot, index) {
+    function createMarkedSpotAnimation(spot) {
         let div = spot.children[0]
-        if (div.className == "empty") {
-            const cross = document.createElement("div")
-            cross.classList.add("cross")
-
-            const diagonal1 = document.createElement("div")
-            diagonal1.classList.add("diagonal")
-            diagonal1.setAttribute("id", "line1")
-
-            const diagonal2 = document.createElement("div")
-            diagonal2.classList.add("diagonal")
-            diagonal2.setAttribute("id", "line2")
-
-            cross.appendChild(diagonal1)
-            cross.appendChild(diagonal2)
-            spot.children[0].appendChild(cross)
-            spot.children[0].remove()
-            spot.appendChild(cross)
-        }
     }
-    function addCircleAtSpot(spot, index) {
+
+    function addCrossAtSpot(spot) {
         let div = spot.children[0]
-        if (div.className == "empty") {
-            const circle = document.createElement("div")
-            circle.classList.add("circle")
+        const cross = document.createElement("div")
+        cross.classList.add("cross")
 
-            const ring = document.createElement("div")
-            ring.classList.add("circle-component")
-            ring.setAttribute("id", "ring")
+        const diagonal1 = document.createElement("div")
+        diagonal1.classList.add("diagonal")
+        diagonal1.setAttribute("id", "line1")
 
-            const cover = document.createElement("div")
-            cover.classList.add("circle-component")
-            cover.setAttribute("id", "cover")
+        const diagonal2 = document.createElement("div")
+        diagonal2.classList.add("diagonal")
+        diagonal2.setAttribute("id", "line2")
 
-            circle.appendChild(ring)
-            circle.appendChild(cover)
-            spot.children[0].appendChild(circle)
-            spot.children[0].remove()
-            spot.appendChild(circle)
-        }
+        cross.appendChild(diagonal1)
+        cross.appendChild(diagonal2)
+        spot.children[0].appendChild(cross)
+        spot.children[0].remove()
+        spot.appendChild(cross)
+    }
+    function addCircleAtSpot(spot) {
+        let div = spot.children[0]
+        const circle = document.createElement("div")
+        circle.classList.add("circle")
+
+        const ring = document.createElement("div")
+        ring.classList.add("circle-component")
+        ring.setAttribute("id", "ring")
+
+        const cover = document.createElement("div")
+        cover.classList.add("circle-component")
+        cover.setAttribute("id", "cover")
+
+        circle.appendChild(ring)
+        circle.appendChild(cover)
+        spot.children[0].appendChild(circle)
+        spot.children[0].remove()
+        spot.appendChild(circle)
     }
 
     spots.forEach((spot) => {
