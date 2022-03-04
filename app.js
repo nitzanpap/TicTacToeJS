@@ -96,10 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function createMarkedSpotAnimation(spot) {
-        let div1 = spot.children[0]
-        div1.classList.add("marked-spot-click-animation")
+        let shape = spot.children[0]
+        shape.classList.add("marked-spot-click-animation")
         setTimeout(function () {
-            div1.classList.remove("marked-spot-click-animation")
+            shape.classList.remove("marked-spot-click-animation")
         }, 300)
     }
 
