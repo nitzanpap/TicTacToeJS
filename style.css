@@ -33,13 +33,11 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  font-size: 2em;
   color: #577dfa;
 }
 
 * body h1 {
-  -webkit-text-decoration: underline 5px dotted #577dfa;
-          text-decoration: underline 5px dotted #577dfa;
+  font-size: 8vmin;
   margin-bottom: 5vh;
 }
 
@@ -57,8 +55,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: MIN(65vw, 65vh);
-  width: MIN(65vw, 65vh);
+  height: 65vmin;
+  width: 65vmin;
 }
 
 * body main .board {
@@ -109,7 +107,7 @@
 * body main .board .spot .cross .diagonal {
   position: absolute;
   background-color: #577dfa;
-  width: calc(MIN(65vw, 65vh) / 3 * 0.8);
+  width: calc(65vmin / 3 * 0.8);
   height: 10px;
 }
 
@@ -139,8 +137,8 @@
 
 * body main .board .spot .circle .circle-component {
   position: absolute;
-  width: calc(MIN(65vw, 65vh) / 3 * 0.7);
-  height: calc(MIN(65vw, 65vh) / 3 * 0.7);
+  width: calc(65vmin / 3 * 0.7);
+  height: calc(65vmin / 3 * 0.7);
   border-radius: 50%;
 }
 
@@ -150,8 +148,8 @@
 
 * body main .board .spot .circle #cover {
   background-color: #2c394b;
-  width: calc(MIN(65vw, 65vh) / 3 * 0.5);
-  height: calc(MIN(65vw, 65vh) / 3 * 0.5);
+  width: calc(65vmin / 3 * 0.5);
+  height: calc(65vmin / 3 * 0.5);
 }
 
 * body main .board .spot .empty {
@@ -169,6 +167,7 @@
 }
 
 * body main .message-box {
+  font-size: 2vmax;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -180,5 +179,25 @@
           justify-content: center;
   width: 100%;
   height: 2em;
+}
+
+* body .signature {
+  color: coral;
+  font-size: 3vmin;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 /*# sourceMappingURL=style.css.map */
