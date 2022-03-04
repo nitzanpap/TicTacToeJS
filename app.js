@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Insert player's sign into the board array.
                 let spotIndex = spot.id.slice(-1)
                 board[spotIndex] = playerTurnSign
-                console.log(board)
                 // Add a cross if it's X's turn
                 if (playerTurnSign == "X") addCrossAtSpot(spot)
                 // Add a circle if it's O's turn
