@@ -34,7 +34,7 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  color: #577dfa;
+  color: #eeeeee;
 }
 
 * body h1 {
@@ -69,8 +69,8 @@
       grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr;
-  border: 10px solid #d8d8d8;
-  border-radius: 10px;
+  border: 10px solid #eeeeee;
+  border-radius: 1rem;
   margin-bottom: 2vh;
 }
 
@@ -88,7 +88,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid #d8d8d8;
+  border: 1px solid #eeeeee;
   cursor: pointer;
 }
 
@@ -109,7 +109,7 @@
 * body main .board .spot .cross .diagonal {
   position: absolute;
   background-color: #577dfa;
-  width: calc(65vmin / 3 * 0.8);
+  width: calc(65vmin / 3 * 0.6);
   height: 1.5vmin;
 }
 
@@ -177,6 +177,37 @@
   font-size: 2vmax;
   width: 100%;
   height: 2em;
+  margin-bottom: 1vh;
+}
+
+* body .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+* body .btns .btn-link {
+  font-size: 1.5vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #eeeeee;
+  background-color: #4361ee;
+  width: 8em;
+  height: 3em;
+  border-radius: 2em;
 }
 
 * body .signature {
