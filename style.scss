@@ -4,7 +4,10 @@ $background-color: #2c394b;
 $hover-color: #3b4450;
 $cross-color: #577dfa;
 $circle-color: #ff5c8d;
-$board-border-color: #d8d8d8;
+$board-border-color: #eeeeee;
+$winning-color: springgreen;
+$tie-color: gold;
+$btn-background-color: #4361ee;
 $box-width: 65vmin;
 $signature-color: #ffa786;
 
@@ -30,7 +33,7 @@ $signature-color: #ffa786;
         height: 100vh;
         width: 100vw;
         overflow: hidden;
-        color: $cross-color;
+        color: $board-border-color;
         h1 {
             font-size: 8vmin;
             margin-bottom: 5vh;
@@ -49,7 +52,7 @@ $signature-color: #ffa786;
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-template-rows: 1fr 1fr 1fr;
                 border: 10px solid $board-border-color;
-                border-radius: 10px;
+                border-radius: 1rem;
                 margin-bottom: 2vh;
                 :hover {
                     background-color: $hover-color;
@@ -69,7 +72,7 @@ $signature-color: #ffa786;
                         .diagonal {
                             position: absolute;
                             background-color: $cross-color;
-                            width: calc(#{$box-width} / 3 * 0.8);
+                            width: calc(#{$box-width} / 3 * 0.6);
                             height: 1.5vmin;
                         }
                         #line1 {
@@ -116,6 +119,25 @@ $signature-color: #ffa786;
                 font-size: 2vmax;
                 width: 100%;
                 height: 2em;
+                margin-bottom: 1vh;
+            }
+        }
+        .btns {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            .btn-link {
+                font-size: 1.5vmax;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $board-border-color;
+                background-color: $btn-background-color;
+                width: 8em;
+                height: 3em;
+                border-radius: 2em;
+            }
+            #reset-btn {
             }
         }
         .signature {
