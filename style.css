@@ -175,7 +175,7 @@
 }
 
 * body .signature {
-  color: coral;
+  color: #ffa786;
   font-size: 3vmin;
   z-index: -1;
   width: 100vw;
