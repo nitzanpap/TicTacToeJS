@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     spots.forEach((spot) => {
         spot.addEventListener("click", () => handleUserClick(spot))
-        // Ugly implematation of hover, but it works. needs to be replaced later.
+        // Ugly implementation of hover, but it works. needs to be replaced later.
         // Also this solution needs to import colors from a main colors file.
         spot.addEventListener("mouseenter", () => hoverSpot(spot))
         spot.addEventListener("mouseleave", () => removeHoverSpot(spot))
