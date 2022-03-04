@@ -20,6 +20,7 @@ $box-width: 65vmin;
     body {
         background-color: $background-color;
         font-family: "Roboto", sans-serif;
+        text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -47,6 +48,7 @@ $box-width: 65vmin;
                 grid-template-rows: 1fr 1fr 1fr;
                 border: 10px solid $board-border-color;
                 border-radius: 10px;
+                margin-bottom: 2vh;
                 .spot {
                     display: flex;
                     justify-content: center;
@@ -66,7 +68,7 @@ $box-width: 65vmin;
                             position: absolute;
                             background-color: $cross-color;
                             width: calc(#{$box-width} / 3 * 0.8);
-                            height: 10px;
+                            height: 1.5vmin;
                         }
                         #line1 {
                             transform: rotate(0.125turn);
@@ -83,8 +85,8 @@ $box-width: 65vmin;
                         align-items: center;
                         .circle-component {
                             position: absolute;
-                            width: calc(#{$box-width} / 3 * 0.7);
-                            height: calc(#{$box-width} / 3 * 0.7);
+                            width: calc(#{$box-width} / 3 * 0.5);
+                            height: calc(#{$box-width} / 3 * 0.5);
                             border-radius: 50%;
                         }
                         #ring {
@@ -92,8 +94,8 @@ $box-width: 65vmin;
                         }
                         #cover {
                             background-color: $background-color;
-                            width: calc(#{$box-width} / 3 * 0.5);
-                            height: calc(#{$box-width} / 3 * 0.5);
+                            width: calc(#{$box-width} / 3 * 0.4);
+                            height: calc(#{$box-width} / 3 * 0.4);
                         }
                     }
                     .empty {
@@ -107,9 +109,6 @@ $box-width: 65vmin;
             }
             .message-box {
                 font-size: 2vmax;
-                display: flex;
-                align-items: center;
-                justify-content: center;
                 width: 100%;
                 height: 2em;
             }

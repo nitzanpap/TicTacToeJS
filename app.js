@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 msg.innerHTML = ""
                 break
             case "Marked Spot":
-                msg.innerHTML = "This spot has already been marked."
+                msg.innerHTML = "This spot is already marked."
                 msg.style.color = "crimson"
                 break
             case "Game Won":
