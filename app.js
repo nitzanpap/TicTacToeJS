@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const spots = Array.from(document.querySelectorAll(".spot"))
     const msg = document.querySelector(".message-box")
-    let counter = 0
 
     let board = ["", "", "", "", "", "", "", "", ""]
     let playerTurnSign = "X"
