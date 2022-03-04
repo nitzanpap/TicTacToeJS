@@ -74,6 +74,10 @@
   margin-bottom: 2vh;
 }
 
+* body main .board :hover {
+  background-color: #3b4450;
+}
+
 * body main .board .spot {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -86,14 +90,6 @@
           align-items: center;
   border: 1px solid #d8d8d8;
   cursor: pointer;
-  -webkit-transition: width height 2s;
-  transition: width height 2s;
-}
-
-* body main .board .spot :hover {
-  background-color: #3b4450;
-  width: 1%;
-  height: 1%;
 }
 
 * body main .board .spot .cross {
@@ -172,6 +168,11 @@
           align-items: center;
 }
 
+* body main .board .marked-spot-click-animation {
+  -webkit-animation: marked-click 0.5s;
+          animation: marked-click 0.5s;
+}
+
 * body main .message-box {
   font-size: 2vmax;
   width: 100%;
@@ -196,5 +197,27 @@
           align-items: flex-end;
   margin-right: 1rem;
   margin-bottom: 1rem;
+}
+
+@-webkit-keyframes marked-click {
+  50% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes marked-click {
+  50% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 /*# sourceMappingURL=style.css.map */

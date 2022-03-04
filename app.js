@@ -101,7 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function createMarkedSpotAnimation(spot) {
-        let div = spot.children[0]
+        let div1 = spot.children[0]
+        div1.classList.add("marked-spot-click-animation")
+        setTimeout(function () {
+            div1.classList.remove("marked-spot-click-animation")
+        }, 500)
     }
 
     function addCrossAtSpot(spot) {

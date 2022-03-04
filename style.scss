@@ -51,20 +51,15 @@ $signature-color: #ffa786;
                 border: 10px solid $board-border-color;
                 border-radius: 10px;
                 margin-bottom: 2vh;
+                :hover {
+                    background-color: $hover-color;
+                }
                 .spot {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border: 1px solid $board-border-color;
                     cursor: pointer;
-                    // Next section currently not working
-                    transition: width height 2s;
-                    :hover {
-                        background-color: $hover-color;
-                        width: 1%;
-                        height: 1%;
-                    }
-                    // End of section
                     .cross {
                         width: 100%;
                         height: 100%;
@@ -113,6 +108,9 @@ $signature-color: #ffa786;
                         align-items: center;
                     }
                 }
+                .marked-spot-click-animation {
+                    animation: marked-click 0.5s;
+                }
             }
             .message-box {
                 font-size: 2vmax;
@@ -132,6 +130,14 @@ $signature-color: #ffa786;
             align-items: flex-end;
             margin-right: 1rem;
             margin-bottom: 1rem;
+        }
+    }
+    @keyframes marked-click {
+        50% {
+            transform: scale(0.5);
+        }
+        100% {
+            transform: scale(1);
         }
     }
 }
