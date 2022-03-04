@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Handle spot is not empty
             if (div.className != "empty") {
-                updateMsgBox("Marked Spot")
                 createMarkedSpotAnimation(spot)
             }
             // Handle spot is empty
@@ -105,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         div1.classList.add("marked-spot-click-animation")
         setTimeout(function () {
             div1.classList.remove("marked-spot-click-animation")
-        }, 500)
+        }, 300)
     }
 
     function addCrossAtSpot(spot) {

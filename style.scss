@@ -109,7 +109,7 @@ $signature-color: #ffa786;
                     }
                 }
                 .marked-spot-click-animation {
-                    animation: marked-click 0.5s;
+                    animation: marked-click 0.3s;
                 }
             }
             .message-box {
@@ -134,7 +134,7 @@ $signature-color: #ffa786;
     }
     @keyframes marked-click {
         50% {
-            transform: scale(0.5);
+            transform: scale(0.75);
         }
         100% {
             transform: scale(1);

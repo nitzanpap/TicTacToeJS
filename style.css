@@ -169,8 +169,8 @@
 }
 
 * body main .board .marked-spot-click-animation {
-  -webkit-animation: marked-click 0.5s;
-          animation: marked-click 0.5s;
+  -webkit-animation: marked-click 0.3s;
+          animation: marked-click 0.3s;
 }
 
 * body main .message-box {
@@ -201,8 +201,8 @@
 
 @-webkit-keyframes marked-click {
   50% {
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
+    -webkit-transform: scale(0.75);
+            transform: scale(0.75);
   }
   100% {
     -webkit-transform: scale(1);
@@ -212,8 +212,8 @@
 
 @keyframes marked-click {
   50% {
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
+    -webkit-transform: scale(0.75);
+            transform: scale(0.75);
   }
   100% {
     -webkit-transform: scale(1);
