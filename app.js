@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const spots = Array.from(document.querySelectorAll(".spot"))
     const msg = document.querySelector(".message-box")
+    let counter = 0
 
     let board = ["", "", "", "", "", "", "", "", ""]
     let playerTurnSign = "X"
@@ -140,7 +141,23 @@ document.addEventListener("DOMContentLoaded", () => {
         spot.appendChild(circle)
     }
 
+    function hoverSpot(spot) {
+        let shape = spot.children[0]
+        if (shape.classList[0] == "circle")
+            shape.children[1].style.backgroundColor = "#3b4450"
+    }
+
+    function removeHoverSpot(spot) {
+        let shape = spot.children[0]
+        if (shape.classList[0] == "circle")
+            shape.children[1].style.backgroundColor = "#2c394b"
+    }
+
     spots.forEach((spot) => {
         spot.addEventListener("click", () => handleUserClick(spot))
+        // Ugly implematation of hover, but it works. needs to be replaced later.
+        // Also this solution needs to import colors from a main colors file.
+        spot.addEventListener("mouseenter", () => hoverSpot(spot))
+        spot.addEventListener("mouseleave", () => removeHoverSpot(spot))
     })
 })
