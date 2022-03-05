@@ -106,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function activateEmptySpotAnimation(spot) {
         let shape = spot.children[0]
-        console.log(shape)
         shape.classList.add("empty-spot-clicked")
         setTimeout(function () {
             shape.classList.remove("empty-spot-clicked")
