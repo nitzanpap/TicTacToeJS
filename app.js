@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Handle spot is not empty
             if (div.className != "empty") {
-                createMarkedSpotAnimation(spot)
+                activateMarkedSpotAnimation(spot)
             }
             // Handle spot is empty
             else {
@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (playerTurnSign == "X") addCrossAtSpot(spot)
                 // Add a circle if it's O's turn
                 else addCircleAtSpot(spot)
+                activateEmptySpotAnimation(spot)
                 turnsCounter++
                 if (checkWin()) {
                     updateMsgBox("Game Won")
@@ -95,11 +96,20 @@ document.addEventListener("DOMContentLoaded", () => {
         else playerTurnSign = "X"
     }
 
-    function createMarkedSpotAnimation(spot) {
+    function activateMarkedSpotAnimation(spot) {
         let shape = spot.children[0]
-        shape.classList.add("marked-spot-click-animation")
+        shape.classList.add("marked-spot-clicked")
         setTimeout(function () {
-            shape.classList.remove("marked-spot-click-animation")
+            shape.classList.remove("marked-spot-clicked")
+        }, 300)
+    }
+
+    function activateEmptySpotAnimation(spot) {
+        let shape = spot.children[0]
+        console.log(shape)
+        shape.classList.add("empty-spot-clicked")
+        setTimeout(function () {
+            shape.classList.remove("empty-spot-clicked")
         }, 300)
     }
 
