@@ -11,6 +11,23 @@ $btn-background-color: #8338ec;
 $box-width: 65vmin;
 $signature-color: #ffa786;
 
+@keyframes marked-spot-click {
+    50% {
+        transform: scale(0.75);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes empty-spot-click {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -111,8 +128,11 @@ $signature-color: #ffa786;
                         align-items: center;
                     }
                 }
-                .marked-spot-click-animation {
-                    animation: marked-click 0.3s;
+                .marked-spot-clicked {
+                    animation: marked-spot-click 0.3s;
+                }
+                .empty-spot-clicked {
+                    animation: empty-spot-click 0.3s;
                 }
             }
             .message-box {
@@ -152,14 +172,6 @@ $signature-color: #ffa786;
             align-items: flex-end;
             margin-right: 1rem;
             margin-bottom: 1rem;
-        }
-    }
-    @keyframes marked-click {
-        50% {
-            transform: scale(0.75);
-        }
-        100% {
-            transform: scale(1);
         }
     }
 }

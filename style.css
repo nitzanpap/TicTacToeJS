@@ -1,4 +1,47 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@-webkit-keyframes marked-spot-click {
+  50% {
+    -webkit-transform: scale(0.75);
+            transform: scale(0.75);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes marked-spot-click {
+  50% {
+    -webkit-transform: scale(0.75);
+            transform: scale(0.75);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes empty-spot-click {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes empty-spot-click {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -168,9 +211,14 @@
           align-items: center;
 }
 
-* body main .board .marked-spot-click-animation {
-  -webkit-animation: marked-click 0.3s;
-          animation: marked-click 0.3s;
+* body main .board .marked-spot-clicked {
+  -webkit-animation: marked-spot-click 0.3s;
+          animation: marked-spot-click 0.3s;
+}
+
+* body main .board .empty-spot-clicked {
+  -webkit-animation: empty-spot-click 0.3s;
+          animation: empty-spot-click 0.3s;
 }
 
 * body main .message-box {
@@ -228,27 +276,5 @@
           align-items: flex-end;
   margin-right: 1rem;
   margin-bottom: 1rem;
-}
-
-@-webkit-keyframes marked-click {
-  50% {
-    -webkit-transform: scale(0.75);
-            transform: scale(0.75);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-
-@keyframes marked-click {
-  50% {
-    -webkit-transform: scale(0.75);
-            transform: scale(0.75);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
 }
 /*# sourceMappingURL=style.css.map */
