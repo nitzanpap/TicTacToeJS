@@ -80,19 +80,22 @@ document.addEventListener("DOMContentLoaded", () => {
             case "Game Won":
                 msg.innerHTML = "Player " + playerTurnSign + " Won the game!"
                 msg.style.color = "springgreen"
-                // Grey out the board
-                spots.forEach((spot) => {
-                    spot.style.opacity = 0.6
-                })
+                makeBoardGrey()
                 break
             case "Tie":
                 msg.innerHTML = "It's a TIE!"
                 msg.style.color = "gold"
+                makeBoardGrey()
                 break
             default:
-                alert("Invalid message.")
+                alert("Invalid case.")
                 break
         }
+    }
+    function makeBoardGrey() {
+        spots.forEach((spot) => {
+            spot.style.opacity = 0.6
+        })
     }
 
     function switchTurn() {
