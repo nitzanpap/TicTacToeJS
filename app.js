@@ -50,12 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function opponentDumbMode() {
-        let i = board.indexOf("")
-        if (board[i] == "") {
-            playTurn(spots[i])
-        }
-
-        return 0
+        let i = Math.floor(Math.random() * 9)
+        // Choose an empty random spot on the board.
+        while (board[i % 9] != "") i++
+        playTurn(spots[i % 9])
+        return i % 9
     }
 
     function playTurn(spot) {
