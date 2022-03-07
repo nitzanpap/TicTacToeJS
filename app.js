@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let playerTurnSign = "X"
     let isGameOver = false
     let turnsCounter = 0
-    let opponentMode = "easy"
+    let opponentModes = ["dumb", "easy", "hard", "impossible"]
+    let Mode = 0
 
     /*
      [0] [1] [2]
@@ -37,26 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
             // Handle spot is empty
             else {
                 playTurn(spot)
-                turnsCounter++
-                opponentTurn()
-                switchTurn()
+                if (!isGameOver) opponentTurn()
             }
         }
     }
 
     function opponentTurn() {
         let spot = -1
-        if (opponentMode == "easy") spot = opponentEasyMode()
-        else alert("Opponent mode invalid")
+        if (opponentModes[Mode] == "dumb") spot = opponentDumbMode()
+        else alert("Invalid opponent mode")
     }
 
-    function opponentEasyMode() {
-        alert("Opponent is " + playerTurnSign + ", Turn no. " + turnsCounter)
-        for (let i = 0; i < board.length; i++) {
-            if (board[i] == "") {
-                playTurn(spots[i])
-                return
-            }
+    function opponentDumbMode() {
+        let i = board.indexOf("")
+        if (board[i] == "") {
+            playTurn(spots[i])
         }
 
         return 0
@@ -69,11 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (checkWin()) {
             updateMsgBox("Game Won")
             isGameOver = true
-            return
         } else if (turnsCounter == 9) {
             updateMsgBox("Tie")
             isGameOver = true
-            return
         }
         switchTurn()
     }
