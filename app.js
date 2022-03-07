@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let playerTurnSign = "X"
     let isGameOver = false
     let turnsCounter = 0
+    let opponentMode = "easy"
 
     /*
      [0] [1] [2]
@@ -35,20 +36,48 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             // Handle spot is empty
             else {
-                // Add sign to the board array and draw it
-                addSignToBoard(spot)
+                playTurn(spot)
                 turnsCounter++
-                if (checkWin()) {
-                    updateMsgBox("Game Won")
-                    isGameOver = true
-                } else if (turnsCounter == 9) {
-                    updateMsgBox("Tie")
-                    isGameOver = true
-                }
+                opponentTurn()
                 switchTurn()
             }
         }
     }
+
+    function opponentTurn() {
+        let spot = -1
+        if (opponentMode == "easy") spot = opponentEasyMode()
+        else alert("Opponent mode invalid")
+    }
+
+    function opponentEasyMode() {
+        alert("Opponent is " + playerTurnSign + ", Turn no. " + turnsCounter)
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] == "") {
+                playTurn(spots[i])
+                return
+            }
+        }
+
+        return 0
+    }
+
+    function playTurn(spot) {
+        // Add sign to the board array and draw it
+        addSignToBoard(spot)
+        turnsCounter++
+        if (checkWin()) {
+            updateMsgBox("Game Won")
+            isGameOver = true
+            return
+        } else if (turnsCounter == 9) {
+            updateMsgBox("Tie")
+            isGameOver = true
+            return
+        }
+        switchTurn()
+    }
+
     function addSignToBoard(spot) {
         // Insert player's sign into the board array.
         let spotIndex = spot.id.slice(-1)
