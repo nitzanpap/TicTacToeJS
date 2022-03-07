@@ -44,16 +44,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function opponentTurn() {
-        let spot = -1
-        if (opponentModes[Mode] == "dumb") spot = opponentDumbMode()
-        else alert("Invalid opponent mode")
+        let spotIndex = -1
+        switch (opponentModes[Mode]) {
+            case "dumb":
+                spotIndex = opponentDumbMode()
+                break
+            case "easy":
+                spotIndex = opponentEasyMode()
+                break
+            case "hard":
+                break
+            case "impossible":
+                break
+            default:
+                alert("Invalid opponent mode")
+        }
+        playTurn(spots[spotIndex])
+    }
+
+    function opponentEasyMode() {
+        let i = Math.floor(Math.random() * 9)
+        // Choose an empty random spot on the board.
+        while (board[i % 9] != "") i++
+        return i % 9
     }
 
     function opponentDumbMode() {
         let i = Math.floor(Math.random() * 9)
         // Choose an empty random spot on the board.
         while (board[i % 9] != "") i++
-        playTurn(spots[i % 9])
         return i % 9
     }
 
