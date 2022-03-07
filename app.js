@@ -27,24 +27,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isGameOver) {
             // Reset message box
             updateMsgBox("No Message")
-
             // Check the sign in the spot
-            let div = spot.children[0]
-
+            let sign = spot.children[0]
             // Handle spot is not empty
-            if (div.className != "empty") {
+            if (sign.className != "empty") {
                 activateMarkedSpotAnimation(spot)
             }
             // Handle spot is empty
             else {
-                // Insert player's sign into the board array.
-                let spotIndex = spot.id.slice(-1)
-                board[spotIndex] = playerTurnSign
-                // Add a cross if it's X's turn
-                if (playerTurnSign == "X") addCrossAtSpot(spot)
-                // Add a circle if it's O's turn
-                else addCircleAtSpot(spot)
-                activateEmptySpotAnimation(spot)
+                // Add sign to the board array and draw it
+                addSignToBoard(spot)
                 turnsCounter++
                 if (checkWin()) {
                     updateMsgBox("Game Won")
@@ -56,6 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 switchTurn()
             }
         }
+    }
+    function addSignToBoard(spot) {
+        // Insert player's sign into the board array.
+        let spotIndex = spot.id.slice(-1)
+        board[spotIndex] = playerTurnSign
+        drawSignAtSpot(spot)
+        activateEmptySpotAnimation(spot)
     }
 
     function checkWin() {
@@ -119,41 +118,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300)
     }
 
-    function addCrossAtSpot(spot) {
-        const cross = document.createElement("div")
-        cross.classList.add("cross")
-
-        const diagonal1 = document.createElement("div")
-        diagonal1.classList.add("diagonal")
-        diagonal1.setAttribute("id", "line1")
-
-        const diagonal2 = document.createElement("div")
-        diagonal2.classList.add("diagonal")
-        diagonal2.setAttribute("id", "line2")
-
-        cross.appendChild(diagonal1)
-        cross.appendChild(diagonal2)
-        spot.children[0].appendChild(cross)
+    function drawSignAtSpot(spot) {
+        let shape = document.createElement("div")
+        let shapeInnerDiv1 = document.createElement("div")
+        let shapeInnerDiv2 = document.createElement("div")
+        // Draw a cross if it's X's turn
+        if (playerTurnSign == "X") {
+            shape.classList.add("cross")
+            shapeInnerDiv1.classList.add("diagonal")
+            shapeInnerDiv1.setAttribute("id", "line1")
+            shapeInnerDiv2.classList.add("diagonal")
+            shapeInnerDiv2.setAttribute("id", "line2")
+            // Draw a circle if it's O's turn
+        } else {
+            shape.classList.add("circle")
+            shapeInnerDiv1.classList.add("circle-component")
+            shapeInnerDiv1.setAttribute("id", "ring")
+            shapeInnerDiv2.classList.add("circle-component")
+            shapeInnerDiv2.setAttribute("id", "cover")
+        }
+        shape.appendChild(shapeInnerDiv1)
+        shape.appendChild(shapeInnerDiv2)
+        spot.children[0].appendChild(shape)
         spot.children[0].remove()
-        spot.appendChild(cross)
-    }
-    function addCircleAtSpot(spot) {
-        const circle = document.createElement("div")
-        circle.classList.add("circle")
-
-        const ring = document.createElement("div")
-        ring.classList.add("circle-component")
-        ring.setAttribute("id", "ring")
-
-        const cover = document.createElement("div")
-        cover.classList.add("circle-component")
-        cover.setAttribute("id", "cover")
-
-        circle.appendChild(ring)
-        circle.appendChild(cover)
-        spot.children[0].appendChild(circle)
-        spot.children[0].remove()
-        spot.appendChild(circle)
+        spot.appendChild(shape)
     }
 
     function hoverSpot(spot) {
