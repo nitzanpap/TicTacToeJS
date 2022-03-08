@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let isGameVsPc = true
     let opponentModes = ["dumb", "easy", "hard", "impossible"]
     let Mode = 1
+    let isClickAllowed = true
 
     /*
      [0] [1] [2]
@@ -47,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function opponentTurn() {
+        isClickAllowed = false
         let spotIndex = -1
         switch (opponentModes[Mode]) {
             case "dumb":
@@ -62,7 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
             default:
                 alert("Invalid opponent mode")
         }
-        playTurn(spots[spotIndex])
+        setTimeout(function () {
+            playTurn(spots[spotIndex])
+            isClickAllowed = true
+        }, 400)
     }
 
     /* Priorities:
@@ -242,7 +247,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     spots.forEach((spot) => {
-        spot.addEventListener("click", () => handleUserClick(spot))
+        spot.addEventListener("click", () => {
+            if (isClickAllowed) handleUserClick(spot)
+        })
         // Ugly implementation of hover, but it works. needs to be replaced later.
         // Also this solution needs to import colors from a main colors file.
         spot.addEventListener("mouseenter", () => hoverSpot(spot))
