@@ -1,3 +1,4 @@
+// Wait for the whole document and its styles to load, and then run the script.
 document.addEventListener("DOMContentLoaded", () => {
     const spots = Array.from(document.querySelectorAll(".spot"))
     const msg = document.querySelector(".message-box")
@@ -79,6 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
         let OcombinationFound = false
         let XcombinationFound = false
 
+        // For each possible combination, check for a possible move that:
+        // 1. Wins the game.
+        // 2. Prevents the player from winning the game.
+        // Otherwise, select a random spot.
         winningCombinations.forEach((combination) => {
             numOfO = 0
             numOfX = 0
