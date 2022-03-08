@@ -89,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
             numOfX = 0
             indexOfEmpty = 0
             numOfEmpties = 0
-            let indexCounter = 0
             combination.forEach((index) => {
                 if (board[index] == "O") numOfO++
                 else if (board[index] == "X") numOfX++
@@ -97,18 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     indexOfEmpty = index
                     numOfEmpties++
                 }
-                console.log(index)
-                if (indexCounter == 2) {
-                    console.log(
-                        "O: " +
-                            numOfO +
-                            ", X: " +
-                            numOfX +
-                            " empty: " +
-                            numOfEmpties
-                    )
-                }
-                indexCounter++
             })
             console.log("-----")
             // Priority 1 - Win the game. ex: O-O-_
@@ -122,13 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 XcombinationFound = true
             }
         })
-        console.log(
-            "Completed move.---------- indexOfEmpty: " +
-                indexOfEmpty +
-                ", finalIndex: " +
-                finalIndex
-        )
-        if (XcombinationFound) return finalIndex
+        if (XcombinationFound || OcombinationFound) return finalIndex
         return opponentDumbMode()
     }
 
