@@ -6,8 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let playerTurnSign = "X"
     let isGameOver = false
     let turnsCounter = 0
+
+    let isGameVsPc = true
     let opponentModes = ["dumb", "easy", "hard", "impossible"]
-    let Mode = 0
+    let Mode = 1
 
     /*
      [0] [1] [2]
@@ -38,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Handle spot is empty
             else {
                 playTurn(spot)
-                if (!isGameOver) opponentTurn()
+                if (!isGameOver && isGameVsPc) opponentTurn()
             }
         }
     }
@@ -62,11 +64,57 @@ document.addEventListener("DOMContentLoaded", () => {
         playTurn(spots[spotIndex])
     }
 
+    /* Priorities:
+        1. If there are 2 'O' and one empty, then return the empty one.
+        2. If there are 2 'X and one empty, then return the empty one.
+        3. Continue a previous 'O'.
+        4. Return an empty index.
+     */
     function opponentEasyMode() {
-        let i = Math.floor(Math.random() * 9)
-        // Choose an empty random spot on the board.
-        while (board[i % 9] != "") i++
-        return i % 9
+        let numOfO
+        let numOfX
+        let numOfEmpties
+        let indexOfEmpty
+        let finalIndex
+        let XcombinationFound = false
+
+        winningCombinations.forEach((combination) => {
+            numOfO = 0
+            numOfX = 0
+            numOfEmpties = 0
+            let indexCounter = 0
+            combination.forEach((index) => {
+                if (board[index] == "O") numOfO++
+                else if (board[index] == "X") numOfX++
+                else {
+                    indexOfEmpty = index
+                    numOfEmpties++
+                }
+                console.log(index)
+                if (indexCounter == 2) {
+                    console.log(
+                        "O: " +
+                            numOfO +
+                            ", X: " +
+                            numOfX +
+                            " empty: " +
+                            numOfEmpties
+                    )
+                }
+                indexCounter++
+            })
+            console.log("-----")
+            // Priority 1 - Win the game. ex: O-O-_
+            if (numOfO == 2 && numOfEmpties == 1) return indexOfEmpty
+            // Priority 2 - Block opponent win. ex: X-X-_
+            else if (numOfX == 2 && numOfEmpties == 1) {
+                finalIndex = indexOfEmpty
+                XcombinationFound = true
+            }
+        })
+        console.log("Completed move.----------")
+        if (XcombinationFound) return finalIndex
+        return opponentDumbMode()
     }
 
     function opponentDumbMode() {
