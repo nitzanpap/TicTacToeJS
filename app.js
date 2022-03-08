@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let turnsCounter = 0
 
     let isGameVsPc = true
-    let opponentModes = ["dumb", "easy", "hard", "impossible"]
+    let opponentModes = ["easy", "hard", "AI"]
     let Mode = 1
     let isClickAllowed = true
 
@@ -51,13 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
         isClickAllowed = false
         let spotIndex = -1
         switch (opponentModes[Mode]) {
-            case "dumb":
-                spotIndex = opponentDumbMode()
-                break
             case "easy":
                 spotIndex = opponentEasyMode()
                 break
             case "hard":
+                spotIndex = opponentHardMode()
                 break
             case "impossible":
                 break
@@ -76,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         3. Continue a previous 'O'.
         4. Return an empty index.
      */
-    function opponentEasyMode() {
+    function opponentHardMode() {
         let numOfO
         let numOfX
         let numOfEmpties
@@ -102,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     numOfEmpties++
                 }
             })
-            console.log("-----")
             // Priority 1 - Win the game. ex: O-O-_
             if (numOfO == 2 && numOfEmpties == 1) {
                 finalIndex = indexOfEmpty
@@ -115,10 +112,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         if (XcombinationFound || OcombinationFound) return finalIndex
-        return opponentDumbMode()
+        return opponentEasyMode()
     }
 
-    function opponentDumbMode() {
+    function opponentEasyMode() {
         let i = Math.floor(Math.random() * 9)
         // Choose an empty random spot on the board.
         while (board[i % 9] != "") i++
