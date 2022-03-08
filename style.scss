@@ -91,6 +91,7 @@ $signature-color: #ffa786;
                             background-color: $cross-color;
                             width: calc(#{$box-width} / 3 * 0.6);
                             height: 1.5vmin;
+                            box-shadow: 0 0 0.5em 0 $cross-color;
                         }
                         #line1 {
                             transform: rotate(0.125turn);
@@ -110,6 +111,7 @@ $signature-color: #ffa786;
                             width: calc(#{$box-width} / 3 * 0.5);
                             height: calc(#{$box-width} / 3 * 0.5);
                             border-radius: 50%;
+                            box-shadow: inset 0 0 0.5em 0 $circle-color, 0 0 0.5em 0 $circle-color;
                         }
                         #ring {
                             background-color: $circle-color;
