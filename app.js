@@ -1,3 +1,4 @@
+// Wait for the whole document and its styles to load, and then run the script.
 document.addEventListener("DOMContentLoaded", () => {
     const spots = Array.from(document.querySelectorAll(".spot"))
     const msg = document.querySelector(".message-box")
@@ -6,6 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let playerTurnSign = "X"
     let isGameOver = false
     let turnsCounter = 0
+
+    let isGameVsPc = true
+    let opponentModes = ["dumb", "easy", "hard", "impossible"]
+    let Mode = 1
+    let isClickAllowed = true
 
     /*
      [0] [1] [2]
@@ -35,20 +41,104 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             // Handle spot is empty
             else {
-                // Add sign to the board array and draw it
-                addSignToBoard(spot)
-                turnsCounter++
-                if (checkWin()) {
-                    updateMsgBox("Game Won")
-                    isGameOver = true
-                } else if (turnsCounter == 9) {
-                    updateMsgBox("Tie")
-                    isGameOver = true
-                }
-                switchTurn()
+                playTurn(spot)
+                if (!isGameOver && isGameVsPc) opponentTurn()
             }
         }
     }
+
+    function opponentTurn() {
+        isClickAllowed = false
+        let spotIndex = -1
+        switch (opponentModes[Mode]) {
+            case "dumb":
+                spotIndex = opponentDumbMode()
+                break
+            case "easy":
+                spotIndex = opponentEasyMode()
+                break
+            case "hard":
+                break
+            case "impossible":
+                break
+            default:
+                alert("Invalid opponent mode")
+        }
+        setTimeout(function () {
+            playTurn(spots[spotIndex])
+            isClickAllowed = true
+        }, 400)
+    }
+
+    /* Priorities:
+        1. If there are 2 'O' and one empty, then return the empty one.
+        2. If there are 2 'X and one empty, then return the empty one.
+        3. Continue a previous 'O'.
+        4. Return an empty index.
+     */
+    function opponentEasyMode() {
+        let numOfO
+        let numOfX
+        let numOfEmpties
+        let indexOfEmpty
+        let finalIndex
+        let OcombinationFound = false
+        let XcombinationFound = false
+
+        // For each possible combination, check for a possible move that:
+        // 1. Wins the game.
+        // 2. Prevents the player from winning the game.
+        // Otherwise, select a random spot.
+        winningCombinations.forEach((combination) => {
+            numOfO = 0
+            numOfX = 0
+            indexOfEmpty = 0
+            numOfEmpties = 0
+            combination.forEach((index) => {
+                if (board[index] == "O") numOfO++
+                else if (board[index] == "X") numOfX++
+                else {
+                    indexOfEmpty = index
+                    numOfEmpties++
+                }
+            })
+            console.log("-----")
+            // Priority 1 - Win the game. ex: O-O-_
+            if (numOfO == 2 && numOfEmpties == 1) {
+                finalIndex = indexOfEmpty
+                OcombinationFound = true
+            }
+            // Priority 2 - Block opponent win. ex: X-X-_
+            else if (numOfX == 2 && numOfEmpties == 1 && !OcombinationFound) {
+                finalIndex = indexOfEmpty
+                XcombinationFound = true
+            }
+        })
+        if (XcombinationFound || OcombinationFound) return finalIndex
+        return opponentDumbMode()
+    }
+
+    function opponentDumbMode() {
+        let i = Math.floor(Math.random() * 9)
+        // Choose an empty random spot on the board.
+        while (board[i % 9] != "") i++
+        return i % 9
+    }
+
+    function playTurn(spot) {
+        // Add sign to the board array and draw it
+        addSignToBoard(spot)
+        turnsCounter++
+        if (checkWin()) {
+            updateMsgBox("Game Won")
+            isGameOver = true
+        } else if (turnsCounter == 9) {
+            updateMsgBox("Tie")
+            isGameOver = true
+        }
+        switchTurn()
+    }
+
     function addSignToBoard(spot) {
         // Insert player's sign into the board array.
         let spotIndex = spot.id.slice(-1)
@@ -157,7 +247,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     spots.forEach((spot) => {
-        spot.addEventListener("click", () => handleUserClick(spot))
+        spot.addEventListener("click", () => {
+            if (isClickAllowed) handleUserClick(spot)
+        })
         // Ugly implementation of hover, but it works. needs to be replaced later.
         // Also this solution needs to import colors from a main colors file.
         spot.addEventListener("mouseenter", () => hoverSpot(spot))
