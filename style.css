@@ -122,6 +122,7 @@
 }
 
 * body main .mode-toggle .mode {
+  font-size: 1.2vmax;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
