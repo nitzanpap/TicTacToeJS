@@ -76,11 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
         let numOfEmpties
         let indexOfEmpty
         let finalIndex
+        let OcombinationFound = false
         let XcombinationFound = false
 
         winningCombinations.forEach((combination) => {
             numOfO = 0
             numOfX = 0
+            indexOfEmpty = 0
             numOfEmpties = 0
             let indexCounter = 0
             combination.forEach((index) => {
@@ -105,14 +107,22 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             console.log("-----")
             // Priority 1 - Win the game. ex: O-O-_
-            if (numOfO == 2 && numOfEmpties == 1) return indexOfEmpty
+            if (numOfO == 2 && numOfEmpties == 1) {
+                finalIndex = indexOfEmpty
+                OcombinationFound = true
+            }
             // Priority 2 - Block opponent win. ex: X-X-_
-            else if (numOfX == 2 && numOfEmpties == 1) {
+            else if (numOfX == 2 && numOfEmpties == 1 && !OcombinationFound) {
                 finalIndex = indexOfEmpty
                 XcombinationFound = true
             }
         })
-        console.log("Completed move.----------")
+        console.log(
+            "Completed move.---------- indexOfEmpty: " +
+                indexOfEmpty +
+                ", finalIndex: " +
+                finalIndex
+        )
         if (XcombinationFound) return finalIndex
         return opponentDumbMode()
     }
