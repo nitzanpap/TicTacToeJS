@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const spots = Array.from(document.querySelectorAll(".spot"))
     const msg = document.querySelector(".message-box")
+    const modes = Array.from(document.querySelectorAll(".mode"))
 
     let board = ["", "", "", "", "", "", "", "", ""]
     let playerTurnSign = "X"
@@ -10,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let isGameVsPc = true
     let opponentModes = ["easy", "hard", "AI"]
-    let Mode = 1
+    let Mode = 0
+    visualizeModeChoice()
     let isClickAllowed = true
 
     /*
@@ -234,21 +236,40 @@ document.addEventListener("DOMContentLoaded", () => {
     function hoverSpot(spot) {
         let shape = spot.children[0]
         if (shape.classList[0] == "circle")
-            shape.children[1].style.backgroundColor = "#3b4450"
+            shape.children[1].classList.add("hover-circle-background-color")
     }
 
     function removeHoverSpot(spot) {
         let shape = spot.children[0]
         if (shape.classList[0] == "circle")
-            shape.children[1].style.backgroundColor = "#2c394b"
+            shape.children[1].classList.remove("hover-circle-background-color")
     }
 
+    // Visualize Mode click
+    function visualizeModeChoice() {
+        modes.forEach((mode) => {
+            if (mode.id.slice(-1) == Mode) mode.classList.add("active-mode")
+            else mode.classList.remove("active-mode")
+        })
+    }
+
+    // Handles choosing a difficulty mode.
+    modes.forEach((mode) => {
+        mode.addEventListener("click", () => {
+            if (Mode != mode.id.slice(-1)) {
+                // Sets Mode according to user click.
+                Mode = mode.id.slice(-1)
+                visualizeModeChoice()
+            }
+        })
+    })
+
+    // Handles clicking/hovering a spot on the board.
     spots.forEach((spot) => {
+        // Handles clicking on a spot
         spot.addEventListener("click", () => {
             if (isClickAllowed) handleUserClick(spot)
         })
-        // Ugly implementation of hover, but it works. needs to be replaced later.
-        // Also this solution needs to import colors from a main colors file.
         spot.addEventListener("mouseenter", () => hoverSpot(spot))
         spot.addEventListener("mouseleave" || "mouseup", () =>
             removeHoverSpot(spot)

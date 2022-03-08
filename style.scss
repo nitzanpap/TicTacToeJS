@@ -1,15 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-$background-color: #2c394b;
+$background-color: #343a40;
 $hover-color: #3b4450;
-$cross-color: #577dfa;
+$cross-color: #3a86ff;
 $circle-color: #ff5c8d;
 $board-border-color: #eeeeee;
 $winning-color: springgreen;
 $tie-color: gold;
-$btn-background-color: #8338ec;
+$btn-background-color: #7209b7;
+$btn-background-color-active: #b5179e;
 $box-width: 65vmin;
 $signature-color: #ffa786;
+$hover-duration: 0.3s;
+$click-duration: 0.3s;
 
 @keyframes marked-spot-click {
     50% {
@@ -70,7 +73,6 @@ $signature-color: #ffa786;
                 align-items: center;
                 flex-direction: row;
                 .mode {
-                    opacity: 0.8;
                     display: flex;
                     justify-content: space-evenly;
                     align-items: center;
@@ -78,6 +80,14 @@ $signature-color: #ffa786;
                     width: ($box-width/3);
                     height: 2em;
                     border-radius: 50px 20px;
+                    cursor: pointer;
+                    transition: $hover-duration;
+                    &:hover {
+                        background-color: $btn-background-color-active;
+                    }
+                    &.active-mode {
+                        background-color: $btn-background-color-active;
+                    }
                 }
             }
             .message-box {
@@ -95,15 +105,16 @@ $signature-color: #ffa786;
                 border: 10px solid $board-border-color;
                 border-radius: 1rem;
                 margin-bottom: 2vh;
-                :hover {
-                    background-color: $hover-color;
-                }
+
                 .spot {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border: 1px solid $board-border-color;
                     cursor: pointer;
+                    &:hover {
+                        background-color: $hover-color;
+                    }
                     .cross {
                         width: 100%;
                         height: 100%;
@@ -142,6 +153,9 @@ $signature-color: #ffa786;
                             background-color: $background-color;
                             width: calc(#{$box-width} / 3 * 0.4);
                             height: calc(#{$box-width} / 3 * 0.4);
+                            &.hover-circle-background-color {
+                                background-color: $hover-color;
+                            }
                         }
                     }
                     .empty {
@@ -153,10 +167,10 @@ $signature-color: #ffa786;
                     }
                 }
                 .marked-spot-clicked {
-                    animation: marked-spot-click 0.3s;
+                    animation: marked-spot-click $click-duration;
                 }
                 .empty-spot-clicked {
-                    animation: empty-spot-click 0.3s;
+                    animation: empty-spot-click $click-duration;
                 }
             }
         }
@@ -174,6 +188,10 @@ $signature-color: #ffa786;
                 width: 8em;
                 height: 3em;
                 border-radius: 2em;
+                transition: $hover-duration;
+                &:hover {
+                    background-color: $btn-background-color-active;
+                }
             }
             #reset-btn {
             }
