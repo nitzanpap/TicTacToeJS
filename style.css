@@ -103,6 +103,48 @@
   width: 65vmin;
 }
 
+* body main .mode-toggle {
+  width: 100%;
+  height: 4em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+* body main .mode-toggle .mode {
+  opacity: 0.8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #8338ec;
+  width: 16.25vmin;
+  height: 2em;
+  border-radius: 50px 20px;
+}
+
+* body main .message-box {
+  font-size: 2vmax;
+  width: 100%;
+  height: 2em;
+  margin-bottom: 1vh;
+}
+
 * body main .board {
   width: 100%;
   height: 100%;
@@ -219,13 +261,6 @@
 * body main .board .empty-spot-clicked {
   -webkit-animation: empty-spot-click 0.3s;
           animation: empty-spot-click 0.3s;
-}
-
-* body main .message-box {
-  font-size: 2vmax;
-  width: 100%;
-  height: 2em;
-  margin-bottom: 1vh;
 }
 
 * body .btns {
