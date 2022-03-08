@@ -317,10 +317,8 @@
 * body .signature {
   color: #ffa786;
   font-size: 3vmin;
-  z-index: -1;
   width: 100vw;
-  height: 100vh;
-  position: fixed;
+  height: 10vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -330,7 +328,12 @@
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  padding: 1rem;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+* body .signature:hover {
+  font-size: 4vmin;
 }
 /*# sourceMappingURL=style.css.map */

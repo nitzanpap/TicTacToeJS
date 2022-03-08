@@ -200,15 +200,16 @@ $click-duration: 0.3s;
         .signature {
             color: $signature-color;
             font-size: 3vmin;
-            z-index: -1;
             width: 100vw;
-            height: 100vh;
-            position: fixed;
+            height: 10vh;
             display: flex;
             justify-content: right;
             align-items: flex-end;
-            margin-right: 1rem;
-            margin-bottom: 1rem;
+            padding: 1rem;
+            transition: $hover-duration ease-in-out;
+            &:hover {
+                font-size: 4vmin;
+            }
         }
     }
 }
