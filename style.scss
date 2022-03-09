@@ -9,8 +9,10 @@ $winning-color: springgreen;
 $tie-color: gold;
 $btn-background-color: #7209b7;
 $btn-background-color-active: #b5179e;
-$box-width: 65vmin;
+$main-width: 80vmin;
+$board-width: 65vmin;
 $signature-color: #ffa786;
+$font-size: 1.2rem;
 $hover-duration: 0.3s;
 $click-duration: 0.3s;
 
@@ -55,16 +57,16 @@ $click-duration: 0.3s;
         overflow: hidden;
         color: $board-border-color;
         h1 {
-            font-size: 8vmin;
-            margin-bottom: 5vh;
+            font-size: 6vmin;
+            margin-bottom: 4vh;
         }
         main {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: $box-width;
-            width: $box-width;
+            height: $main-width;
+            width: $main-width;
             .mode-toggle {
                 width: 100%;
                 height: 4em;
@@ -73,17 +75,18 @@ $click-duration: 0.3s;
                 align-items: center;
                 flex-direction: row;
                 .mode {
-                    font-size: 1.2vmax;
+                    font-size: $font-size;
                     display: flex;
                     justify-content: space-evenly;
                     align-items: center;
                     background-color: $btn-background-color;
-                    width: ($box-width/3);
+                    width: ($main-width/3);
                     height: 2em;
-                    border-radius: 50px 20px;
+                    border-radius: 100px 1px;
                     cursor: pointer;
                     transition: $hover-duration;
                     &:hover {
+                        margin-top: -20px;
                         background-color: $btn-background-color-active;
                     }
                     &.active-mode {
@@ -98,8 +101,8 @@ $click-duration: 0.3s;
                 margin-bottom: 1vh;
             }
             .board {
-                width: 100%;
-                height: 100%;
+                width: $main-width;
+                height: $main-width;
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-template-rows: 1fr 1fr 1fr;
@@ -125,7 +128,7 @@ $click-duration: 0.3s;
                         .diagonal {
                             position: absolute;
                             background-color: $cross-color;
-                            width: calc(#{$box-width} / 3 * 0.6);
+                            width: calc(#{$main-width} / 3 * 0.6);
                             height: 1.5vmin;
                         }
                         #line1 {
@@ -143,8 +146,8 @@ $click-duration: 0.3s;
                         align-items: center;
                         .circle-component {
                             position: absolute;
-                            width: calc(#{$box-width} / 3 * 0.5);
-                            height: calc(#{$box-width} / 3 * 0.5);
+                            width: calc(#{$main-width} / 3 * 0.5);
+                            height: calc(#{$main-width} / 3 * 0.5);
                             border-radius: 50%;
                         }
                         #ring {
@@ -152,8 +155,8 @@ $click-duration: 0.3s;
                         }
                         #cover {
                             background-color: $background-color;
-                            width: calc(#{$box-width} / 3 * 0.4);
-                            height: calc(#{$box-width} / 3 * 0.4);
+                            width: calc(#{$main-width} / 3 * 0.4);
+                            height: calc(#{$main-width} / 3 * 0.4);
                             &.hover-circle-background-color {
                                 background-color: $hover-color;
                             }
@@ -180,7 +183,7 @@ $click-duration: 0.3s;
             justify-content: space-evenly;
             align-items: center;
             .btn-link {
-                font-size: 1.5vmax;
+                font-size: $font-size;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -197,18 +200,24 @@ $click-duration: 0.3s;
             #reset-btn {
             }
         }
-        .signature {
-            color: $signature-color;
-            font-size: 3vmin;
+        footer {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
             width: 100vw;
             height: 10vh;
-            display: flex;
-            justify-content: right;
-            align-items: flex-end;
-            padding: 1rem;
-            transition: $hover-duration ease-in-out;
-            &:hover {
-                font-size: 4vmin;
+            .signature {
+                color: $signature-color;
+                font-size: 2.5vmin;
+                display: flex;
+                width: 100vw;
+                justify-content: right;
+                align-items: flex-end;
+                padding: 0 1rem;
+                transition: $hover-duration;
+                &:hover {
+                    font-size: 3vmin;
+                }
             }
         }
     }
