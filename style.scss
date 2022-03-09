@@ -1,15 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-$background-color: #2c394b;
+$background-color: #343a40;
 $hover-color: #3b4450;
-$cross-color: #577dfa;
+$cross-color: #3a86ff;
 $circle-color: #ff5c8d;
 $board-border-color: #eeeeee;
 $winning-color: springgreen;
 $tie-color: gold;
-$btn-background-color: #8338ec;
-$box-width: 65vmin;
+$btn-background-color: #7209b7;
+$btn-background-color-active: #b5179e;
+$main-width: 80vmin;
+$board-width: 65vmin;
 $signature-color: #ffa786;
+$font-size: 1.2rem;
+$hover-duration: 0.3s;
+$click-duration: 0.3s;
 
 @keyframes marked-spot-click {
     50% {
@@ -52,34 +57,68 @@ $signature-color: #ffa786;
         overflow: hidden;
         color: $board-border-color;
         h1 {
-            font-size: 8vmin;
-            margin-bottom: 5vh;
+            font-size: 6vmin;
+            margin-bottom: 4vh;
         }
         main {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: $box-width;
-            width: $box-width;
-            .board {
+            height: $main-width;
+            width: $main-width;
+            .mode-toggle {
                 width: 100%;
-                height: 100%;
+                height: 4em;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                flex-direction: row;
+                .mode {
+                    font-size: $font-size;
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    background-color: $btn-background-color;
+                    width: ($main-width/3);
+                    height: 2em;
+                    border-radius: 100px 1px;
+                    cursor: pointer;
+                    transition: $hover-duration;
+                    &:hover {
+                        margin-top: -20px;
+                        background-color: $btn-background-color-active;
+                    }
+                    &.active-mode {
+                        background-color: $btn-background-color-active;
+                    }
+                }
+            }
+            .message-box {
+                font-size: 2vmax;
+                width: 100%;
+                height: 2em;
+                margin-bottom: 1vh;
+            }
+            .board {
+                width: $main-width;
+                height: $main-width;
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-template-rows: 1fr 1fr 1fr;
                 border: 10px solid $board-border-color;
                 border-radius: 1rem;
                 margin-bottom: 2vh;
-                :hover {
-                    background-color: $hover-color;
-                }
+
                 .spot {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border: 1px solid $board-border-color;
                     cursor: pointer;
+                    &:hover {
+                        background-color: $hover-color;
+                    }
                     .cross {
                         width: 100%;
                         height: 100%;
@@ -89,7 +128,7 @@ $signature-color: #ffa786;
                         .diagonal {
                             position: absolute;
                             background-color: $cross-color;
-                            width: calc(#{$box-width} / 3 * 0.6);
+                            width: calc(#{$main-width} / 3 * 0.6);
                             height: 1.5vmin;
                         }
                         #line1 {
@@ -107,8 +146,8 @@ $signature-color: #ffa786;
                         align-items: center;
                         .circle-component {
                             position: absolute;
-                            width: calc(#{$box-width} / 3 * 0.5);
-                            height: calc(#{$box-width} / 3 * 0.5);
+                            width: calc(#{$main-width} / 3 * 0.5);
+                            height: calc(#{$main-width} / 3 * 0.5);
                             border-radius: 50%;
                         }
                         #ring {
@@ -116,8 +155,11 @@ $signature-color: #ffa786;
                         }
                         #cover {
                             background-color: $background-color;
-                            width: calc(#{$box-width} / 3 * 0.4);
-                            height: calc(#{$box-width} / 3 * 0.4);
+                            width: calc(#{$main-width} / 3 * 0.4);
+                            height: calc(#{$main-width} / 3 * 0.4);
+                            &.hover-circle-background-color {
+                                background-color: $hover-color;
+                            }
                         }
                     }
                     .empty {
@@ -129,25 +171,22 @@ $signature-color: #ffa786;
                     }
                 }
                 .marked-spot-clicked {
-                    animation: marked-spot-click 0.3s;
+                    animation: marked-spot-click $click-duration;
                 }
                 .empty-spot-clicked {
-                    animation: empty-spot-click 0.3s;
+                    animation: empty-spot-click $click-duration;
                 }
-            }
-            .message-box {
-                font-size: 2vmax;
-                width: 100%;
-                height: 2em;
-                margin-bottom: 1vh;
+                &.greyOutBoard {
+                    opacity: 0.6;
+                }
             }
         }
         .btns {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            .btn-link {
-                font-size: 1.5vmax;
+            .btn {
+                font-size: $font-size;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -156,22 +195,34 @@ $signature-color: #ffa786;
                 width: 8em;
                 height: 3em;
                 border-radius: 2em;
+                transition: $hover-duration;
+                cursor: pointer;
+                &:hover {
+                    background-color: $btn-background-color-active;
+                }
             }
             #reset-btn {
             }
         }
-        .signature {
-            color: $signature-color;
-            font-size: 3vmin;
-            z-index: -1;
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
+        footer {
             display: flex;
-            justify-content: right;
+            justify-content: center;
             align-items: flex-end;
-            margin-right: 1rem;
-            margin-bottom: 1rem;
+            width: 100vw;
+            height: 2vh;
+            .signature {
+                color: $signature-color;
+                font-size: 2.5vmin;
+                display: flex;
+                width: 100vw;
+                justify-content: right;
+                align-items: flex-end;
+                padding: 0 1rem;
+                transition: $hover-duration;
+                &:hover {
+                    font-size: 3vmin;
+                }
+            }
         }
     }
 }
