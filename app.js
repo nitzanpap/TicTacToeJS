@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const spots = Array.from(document.querySelectorAll(".spot"))
     const msg = document.querySelector(".message-box")
     const modes = Array.from(document.querySelectorAll(".mode"))
+    const resetBtn = document.querySelector("#reset-btn")
 
     let board = ["", "", "", "", "", "", "", "", ""]
     let playerTurnSign = "X"
@@ -33,8 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function handleUserClick(spot) {
         if (!isGameOver) {
-            // Reset message box
-            updateMsgBox("No Message")
             // Check the sign in the spot
             let sign = spot.children[0]
             // Handle spot is not empty
@@ -162,28 +161,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateMsgBox(message) {
         switch (message) {
-            case "No Message":
+            case "Reset":
                 msg.innerHTML = ""
                 break
             case "Game Won":
                 msg.innerHTML = "Player " + playerTurnSign + " Won the game!"
                 msg.style.color = "springgreen"
-                makeBoardGrey()
                 break
             case "Tie":
                 msg.innerHTML = "It's a TIE!"
                 msg.style.color = "gold"
-                makeBoardGrey()
                 break
             default:
                 alert("Invalid case.")
                 break
         }
+        makeBoardGrey(message)
     }
-    function makeBoardGrey() {
-        spots.forEach((spot) => {
-            spot.style.opacity = 0.6
-        })
+
+    function makeBoardGrey(message) {
+        const visualBoard = document.querySelector(".board")
+        if (message == "Reset") visualBoard.classList.remove("greyOutBoard")
+        else visualBoard.classList.add("greyOutBoard")
     }
 
     function switchTurn() {
@@ -208,29 +207,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function drawSignAtSpot(spot) {
-        let shape = document.createElement("div")
-        let shapeInnerDiv1 = document.createElement("div")
-        let shapeInnerDiv2 = document.createElement("div")
-        // Draw a cross if it's X's turn
-        if (playerTurnSign == "X") {
-            shape.classList.add("cross")
-            shapeInnerDiv1.classList.add("diagonal")
-            shapeInnerDiv1.setAttribute("id", "line1")
-            shapeInnerDiv2.classList.add("diagonal")
-            shapeInnerDiv2.setAttribute("id", "line2")
-            // Draw a circle if it's O's turn
+        // If game is in session
+        if (playerTurnSign != "") {
+            let shape = document.createElement("div")
+            let shapeInnerDiv1 = document.createElement("div")
+            let shapeInnerDiv2 = document.createElement("div")
+            // Draw a cross if it's X's turn
+            if (playerTurnSign == "X") {
+                shape.classList.add("cross")
+                shapeInnerDiv1.classList.add("diagonal")
+                shapeInnerDiv1.setAttribute("id", "line1")
+                shapeInnerDiv2.classList.add("diagonal")
+                shapeInnerDiv2.setAttribute("id", "line2")
+                // Draw a circle if it's O's turn
+            } else {
+                shape.classList.add("circle")
+                shapeInnerDiv1.classList.add("circle-component")
+                shapeInnerDiv1.setAttribute("id", "ring")
+                shapeInnerDiv2.classList.add("circle-component")
+                shapeInnerDiv2.setAttribute("id", "cover")
+            }
+            shape.appendChild(shapeInnerDiv1)
+            shape.appendChild(shapeInnerDiv2)
+            spot.children[0].appendChild(shape)
+            spot.children[0].remove()
+            spot.appendChild(shape)
         } else {
-            shape.classList.add("circle")
-            shapeInnerDiv1.classList.add("circle-component")
-            shapeInnerDiv1.setAttribute("id", "ring")
-            shapeInnerDiv2.classList.add("circle-component")
-            shapeInnerDiv2.setAttribute("id", "cover")
+            // Remove all signs from the board and replace them with an 'empty' div.
+            if (spot.children[0].classList[0] != "empty") {
+                spot.children[0].remove()
+                let emptySpot = document.createElement("div")
+                emptySpot.classList.add("empty")
+                spot.appendChild(emptySpot)
+            }
         }
-        shape.appendChild(shapeInnerDiv1)
-        shape.appendChild(shapeInnerDiv2)
-        spot.children[0].appendChild(shape)
-        spot.children[0].remove()
-        spot.appendChild(shape)
     }
 
     function hoverSpot(spot) {
@@ -252,6 +262,21 @@ document.addEventListener("DOMContentLoaded", () => {
             else mode.classList.remove("active-mode")
         })
     }
+
+    function resetGame() {
+        playerTurnSign = ""
+        spots.forEach((spot) => {
+            addSignToBoard(spot)
+        })
+        playerTurnSign = "X"
+        isGameOver = false
+        turnsCounter = 0
+        updateMsgBox("Reset")
+    }
+
+    resetBtn.addEventListener("click", () => {
+        resetGame()
+    })
 
     // Handles choosing a difficulty mode.
     modes.forEach((mode) => {

@@ -279,6 +279,10 @@
           animation: empty-spot-click 0.3s;
 }
 
+* body main .board.greyOutBoard {
+  opacity: 0.6;
+}
+
 * body .btns {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -291,7 +295,7 @@
           align-items: center;
 }
 
-* body .btns .btn-link {
+* body .btns .btn {
   font-size: 1.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -309,9 +313,10 @@
   border-radius: 2em;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  cursor: pointer;
 }
 
-* body .btns .btn-link:hover {
+* body .btns .btn:hover {
   background-color: #b5179e;
 }
 

@@ -176,13 +176,16 @@ $click-duration: 0.3s;
                 .empty-spot-clicked {
                     animation: empty-spot-click $click-duration;
                 }
+                &.greyOutBoard {
+                    opacity: 0.6;
+                }
             }
         }
         .btns {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            .btn-link {
+            .btn {
                 font-size: $font-size;
                 display: flex;
                 justify-content: center;
@@ -193,6 +196,7 @@ $click-duration: 0.3s;
                 height: 3em;
                 border-radius: 2em;
                 transition: $hover-duration;
+                cursor: pointer;
                 &:hover {
                     background-color: $btn-background-color-active;
                 }
