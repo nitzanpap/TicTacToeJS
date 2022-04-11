@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         For each possible combination, check for a possible move that:
         1. Wins the game.
         2. Prevents the player from winning the game.
-        Otherwise, mark the center cell, or select a random spot.
+        Otherwise, mark the center cell, or select a random empty spot.
      */
     function opponentHardMode() {
         let numOfO
@@ -86,8 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Priorities:
         // 1. If there are 2 'O' and one empty, then return the empty one.
         // 2. If there are 2 'X and one empty, then return the empty one.
-        // 3. Continue a previous 'O'.
-        // 4. Return an empty index.
         winningCombinations.forEach((combination) => {
             numOfO = 0
             numOfX = 0
