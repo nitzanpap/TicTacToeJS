@@ -1,7 +1,7 @@
 {
   "name": "Nitzan's Tic Tac Toe",
   "short_name": "Tic Tac Toe",
-  "start_url": "index.html",
+  "start_url": "/TicTacToeJS/",
   "display": "standalone",
   "background_color": "#720be0",
   "theme_color": "#dea010",
