@@ -311,7 +311,6 @@ gradle-app.setting
 # Icon must end with two \r
 Icon
 
-
 # Thumbnails
 ._*
 
@@ -477,7 +476,6 @@ build-iPhoneSimulator/
 # Xcode
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 
 ## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
@@ -562,3 +560,6 @@ dist
 **/node_modules
 **/dist
 lerna-debug.log
+*.apk
+*.apk.*
+*.aab
