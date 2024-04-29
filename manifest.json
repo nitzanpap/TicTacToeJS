@@ -3,8 +3,8 @@
   "short_name": "Tic Tac Toe",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#720be0",
-  "theme_color": "#dea010",
+  "background_color": "#343a40",
+  "theme_color": "#343a40",
   "orientation": "portrait-primary",
   "icons": [
     {
