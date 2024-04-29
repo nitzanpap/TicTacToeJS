@@ -1,6 +1,7 @@
 {
-  "name": "Nitzan's Tic Tac Toe",
+  "name": "Tic Tac Toe",
   "short_name": "Tic Tac Toe",
+  "author": "Nitzan Papini",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#343a40",
