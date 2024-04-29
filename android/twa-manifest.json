@@ -1,0 +1,42 @@
+{
+  "packageId": "io.github.nitzanpap.twa",
+  "host": "nitzanpap.github.io",
+  "name": "Tic Tac Toe",
+  "launcherName": "Tic Tac Toe",
+  "display": "standalone",
+  "themeColor": "#343A40",
+  "themeColorDark": "#000000",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#343A40",
+  "enableNotifications": true,
+  "startUrl": "/TicTacToeJS/index.html",
+  "iconUrl": "https://nitzanpap.github.io/TicTacToeJS/assets/images/icons/ios/1024.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "/home/nitzan/devel/myProjects/TicTacToeJS/android/android.keystore",
+    "alias": "android"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://nitzanpap.github.io/TicTacToeJS/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://nitzanpap.github.io/TicTacToeJS/",
+  "minSdkVersion": 19,
+  "orientation": "portrait-primary",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "appVersion": "1"
+}
