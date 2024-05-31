@@ -1,49 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
-$background-color: #343a40;
-$hover-color: #3b4450;
-$cross-color: #3a86ff;
-$circle-color: #ff5c8d;
-$board-border-color: #eeeeee;
-$winning-color: springgreen;
-$tie-color: gold;
-$btn-background-color: #7209b7;
-$btn-background-color-active: #b5179e;
-$main-width: 80vmin;
-$main-height: 80vmin;
-$signature-color: #ffa786;
-$font-size: 1.2rem;
-$hover-duration: 0.3s;
-$click-duration: 0.3s;
-
-@keyframes marked-spot-click {
-  50% {
-    transform: scale(0.75);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes empty-spot-click {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+@import "./cssReset.scss";
+@import "./variables.scss";
+@import "./animations.scss";
+@import "./mixins.scss";
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  a {
-    text-decoration: none;
-  }
-  ul {
-    list-style-type: none;
-  }
-
   body {
     background-color: $background-color;
     font-family: "Roboto", sans-serif;
@@ -62,10 +23,8 @@ $click-duration: 0.3s;
       margin-bottom: 1vh;
     }
     main {
-      display: flex;
+      @include flex-center-center;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
       height: 80vh;
       width: 100vw;
       .mode-toggle {
@@ -112,9 +71,7 @@ $click-duration: 0.3s;
         margin-bottom: 2vh;
 
         .spot {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include flex-center-center;
           border: 1px solid $board-border-color;
           cursor: pointer;
           &:hover {
@@ -123,9 +80,7 @@ $click-duration: 0.3s;
           .cross {
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flex-center-center;
             .diagonal {
               position: absolute;
               background-color: $cross-color;
@@ -142,9 +97,7 @@ $click-duration: 0.3s;
           .circle {
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flex-center-center;
             .circle-component {
               position: absolute;
               width: calc(#{$main-width} / 3 * 0.5);
@@ -166,9 +119,7 @@ $click-duration: 0.3s;
           .empty {
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flex-center-center;
           }
         }
         .marked-spot-clicked {
@@ -188,9 +139,7 @@ $click-duration: 0.3s;
       align-items: center;
       .btn {
         font-size: $font-size;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex-center-center;
         color: $board-border-color;
         background-color: $btn-background-color;
         width: 8em;
@@ -212,13 +161,13 @@ $click-duration: 0.3s;
       width: 100vw;
       height: 2vh;
       .signature {
-        color: $signature-color;
-        font-size: 2.5vmin;
-        display: flex;
         width: 100vw;
+        display: flex;
         justify-content: right;
         align-items: flex-end;
         padding: 0 1rem;
+        font-size: 2.5vmin;
+        color: $signature-color;
         transition: $hover-duration;
         &:hover {
           font-size: 3vmin;
