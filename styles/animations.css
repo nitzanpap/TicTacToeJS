@@ -1,0 +1,16 @@
+@keyframes marked-spot-click {
+  50% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes empty-spot-click {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}/*# sourceMappingURL=animations.css.map */
